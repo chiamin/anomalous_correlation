@@ -51,13 +51,13 @@ build: $(APP)
 debug: $(APP)-g
 
 $(APP): $(OBJECTS) $(ITENSOR_LIBS)
-	$(CCCOM) $(CCFLAGS) $(OBJECTS) -o $(APP) $(LIBFLAGS)
+	$(CCCOM) $(CCFLAGS) $(OBJECTS) -o $(APP).exe $(LIBFLAGS)
 
 $(APP)-g: mkdebugdir $(GOBJECTS) $(ITENSOR_GLIBS)
-	$(CCCOM) $(CCGFLAGS) $(GOBJECTS) -o $(APP)-g $(LIBGFLAGS)
+	$(CCCOM) $(CCGFLAGS) $(GOBJECTS) -o $(APP)-g.exe $(LIBGFLAGS)
 
 clean:
-	rm -fr .debug_objs *.o $(APP) $(APP)-g
+	rm -fr .debug_objs *.o $(APP).exe $(APP)-g.exe
 
 mkdebugdir:
 	mkdir -p .debug_objs
