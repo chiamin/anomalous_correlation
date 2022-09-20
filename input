@@ -1,4 +1,4 @@
 input
 {
-    mps_file   = /home/chiamin/project/code/dmrg.itensor/dmrg.itensor3.hubbard/psi_m16.mps
+    mps_file   = /home/chiamin/project/code/dmrg.itensor/dmrg.itensor3.hubbard/psi_m16.mps /home/chiamin/project/code/dmrg.itensor/dmrg.itensor3.hubbard/psi_m32.mps
 }

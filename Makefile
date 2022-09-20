@@ -13,9 +13,12 @@ APP=corr
 
 # 4. Add any headers your program depends on here. The make program
 #    will auto-detect if these headers have changed and recompile your app.
-HEADERS=Corr.h
+MYDIR=$(HOME)/itensor.utility/
+MYFLAGS=-I$(MYDIR) -I$(MYDIR)/latt -fmax-errors=3
 
-# 5. For any additional .cc files making up your project,
+HEADERS=Corr.h $(MYDIR)/ReadInput.h
+
+# 5. For any additional .cc (source) files making up your project,
 #    add their full filenames here.
 CCFILES=$(APP).cc
 
@@ -37,10 +40,10 @@ GOBJECTS=$(patsubst %,.debug_objs/%, $(OBJECTS))
 #Rules ------------------
 
 %.o: %.cc $(HEADERS) $(TENSOR_HEADERS)
-	$(CCCOM) -c $(CCFLAGS) -o $@ $<
+	$(CCCOM) -c $(CCFLAGS) $(MYFLAGS) -o $@ $<
 
 .debug_objs/%.o: %.cc $(HEADERS) $(TENSOR_HEADERS)
-	$(CCCOM) -c $(CCGFLAGS) -o $@ $<
+	$(CCCOM) -c $(CCGFLAGS) $(MYFLAGS) -o $@ $<
 
 #Targets -----------------
 
@@ -48,13 +51,13 @@ build: $(APP)
 debug: $(APP)-g
 
 $(APP): $(OBJECTS) $(ITENSOR_LIBS)
-	$(CCCOM) $(CCFLAGS) $(OBJECTS) -o $(APP).exe $(LIBFLAGS)
+	$(CCCOM) $(CCFLAGS) $(OBJECTS) -o $(APP) $(LIBFLAGS)
 
 $(APP)-g: mkdebugdir $(GOBJECTS) $(ITENSOR_GLIBS)
-	$(CCCOM) $(CCGFLAGS) $(GOBJECTS) -o $(APP)-g.exe $(LIBGFLAGS)
+	$(CCCOM) $(CCGFLAGS) $(GOBJECTS) -o $(APP)-g $(LIBGFLAGS)
 
 clean:
-	rm -fr .debug_objs *.o $(APP).exe $(APP)-g.exe
+	rm -fr .debug_objs *.o $(APP) $(APP)-g
 
 mkdebugdir:
 	mkdir -p .debug_objs
