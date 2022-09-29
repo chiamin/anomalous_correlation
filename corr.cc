@@ -27,7 +27,7 @@ int main (int argc, char* argv[])
         cout << lamb_up << endl << endl;
         cout << "Cdagdn Cdn =" << endl;
         cout << lamb_dn << endl << endl;
-        cout << "Cdagdn Cdagdn =" << endl;
+        cout << "Cdagup Cdagdn =" << endl;
         cout << corr_dag << endl << endl;
         cout << "Cup Cdn =" << endl;
         cout << corr_CC << endl << endl;
